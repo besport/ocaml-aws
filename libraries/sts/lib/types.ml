@@ -61,7 +61,7 @@ module Credentials =
       secret_access_key: String.t ;
       session_token: String.t ;
       expiration: DateTime.t }
-    let make ~access_key_id  ~secret_access_key  ~session_token  ~expiration
+    let make ~access_key_id  ~secret_access_key  ~session_token  ~expiration 
       () = { access_key_id; secret_access_key; session_token; expiration }
     let parse xml =
       Some
@@ -453,7 +453,7 @@ module AssumeRoleWithSAMLResponse =
       issuer: String.t option ;
       audience: String.t option ;
       name_qualifier: String.t option }
-    let make ?credentials  ?assumed_role_user  ?packed_policy_size  ?subject
+    let make ?credentials  ?assumed_role_user  ?packed_policy_size  ?subject 
       ?subject_type  ?issuer  ?audience  ?name_qualifier  () =
       {
         credentials;
@@ -989,7 +989,7 @@ module AssumeRoleWithWebIdentityResponse =
       packed_policy_size: Integer.t option ;
       provider: String.t option ;
       audience: String.t option }
-    let make ?credentials  ?subject_from_web_identity_token
+    let make ?credentials  ?subject_from_web_identity_token 
       ?assumed_role_user  ?packed_policy_size  ?provider  ?audience  () =
       {
         credentials;
@@ -1227,8 +1227,8 @@ module AssumeRoleRequest =
       external_id: String.t option ;
       serial_number: String.t option ;
       token_code: String.t option }
-    let make ~role_arn  ~role_session_name  ?(policy_arns= [])  ?policy
-      ?duration_seconds  ?(tags= [])  ?(transitive_tag_keys= [])
+    let make ~role_arn  ~role_session_name  ?(policy_arns= [])  ?policy 
+      ?duration_seconds  ?(tags= [])  ?(transitive_tag_keys= []) 
       ?external_id  ?serial_number  ?token_code  () =
       {
         role_arn;
@@ -1337,7 +1337,7 @@ module AssumeRoleRequest =
         tags =
           (TagListType.of_json (Util.of_option_exn (Json.lookup j "tags")));
         transitive_tag_keys =
-          (TtagKeyListType.of_json
+          (TagKeyListType.of_json
              (Util.of_option_exn (Json.lookup j "transitive_tag_keys")));
         external_id =
           (Util.option_map (Json.lookup j "external_id") String.of_json);
